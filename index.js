@@ -6,7 +6,7 @@ var app = express();
 dotenv.config()
 
 
-cron.schedule('0 30 1 17 * * ', () => {
+cron.schedule('0 0 8 19 * * ', () => {
    transporter.sendMail(mailOptions, function(err, info){
        if(err)
        console.log(err);
@@ -14,7 +14,7 @@ cron.schedule('0 30 1 17 * * ', () => {
        console.log(info)
    })
 })
-cron.schedule('0 31 1 17 * * ', () => {
+cron.schedule('0 0 12 23 * * ', () => {
    transporter.sendMail(mailOptions, function(err, info){
        if(err)
        console.log(err);
@@ -22,7 +22,7 @@ cron.schedule('0 31 1 17 * * ', () => {
        console.log(info)
    })
 })
-cron.schedule('0 32 1 17 * * ', () => {
+cron.schedule('0 0 17 30 * * ', () => {
    transporter.sendMail(mailOptions, function(err, info){
        if(err)
        console.log(err);
