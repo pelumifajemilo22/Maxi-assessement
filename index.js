@@ -46,5 +46,10 @@ const mailOptions = {
     subject: 'Interview Assessment',
     html: '<p>Maxitech is an IT company that focuses on Ecommerce and investment</p>'
 }
- const port = process.env.PORT||5000;
+
+ const port = process.env.PORT||5000; 
+ app.get('/', (req,res)=>{
+    res.send(process.env.PORT)
+})
+
  app.listen(port)
