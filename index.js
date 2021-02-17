@@ -1,29 +1,47 @@
+const cron = require('node-cron');
+var nodemailer = require('nodemailer');
 const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors')
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost/Authentication') 
-    .then(()=> console.log('connected to mongodb..'))
-    .catch(err => console.error('could not connect to mongodb'))
-
-const app = express();
-app.use(cors());
-require("./Prod/prod")(app)
+var app = express();
 
 
-//middleware
-app.use(morgan(`dev`));
-app.use(bodyParser.json());
+cron.schedule('0 10 22 16 * * ', () => {
+   transporter.sendMail(mailOptions, function(err, info){
+       if(err)
+       console.log(err);
+       else
+       console.log(info)
+   })
+})
+cron.schedule('0 15 22 16 * * ', () => {
+   transporter.sendMail(mailOptions, function(err, info){
+       if(err)
+       console.log(err);
+       else
+       console.log(info)
+   })
+})
+cron.schedule('0 16 22 16 * * ', () => {
+   transporter.sendMail(mailOptions, function(err, info){
+       if(err)
+       console.log(err);
+       else
+       console.log(info)
+   })
+})
 
 
-// Routes
-app.use('/users', require('./routes/users'))
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'geotim199422@gmail.com',
+        pass: 'march221994'
+    }
+});
 
-// start the server
-const port = process.env.PORT || 5000; 
-app.listen(port);
-console.log(`Server listening at ${port}`)            
+const mailOptions = {
+    from: 'pfajemilo@gmail.com',
+    to: "geotim199422@gmail.com",
+    subject: 'Interview Assessment',
+    html: '<p>Maxitech is an IT company that focuses on Ecommerce and investment</p>'
+}
+app.listen(4000)
